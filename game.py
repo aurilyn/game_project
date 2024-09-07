@@ -31,7 +31,7 @@ class Game_Start:
 
 class Player:
     def __init__(self) -> None:
-        self.player_health = 15
+        self.player_health = 3
         self.player_armour = 0
         self.player_gold = 10
         self.player_deck = ["Rock", "Paper", "Scissors"]
@@ -40,19 +40,24 @@ class Player:
         return self.player_health
     
     def update_player_health(self, new_health):
+        print(new_health)
         self.player_health = new_health
         
 class Mobs:
     def __init__(self) -> None:
-        self.mob_health = 15
+        self.mob_health = 3
         self.mob_armour = 0
         self.attacks = ["Rock", "Paper", "Scissors"]
 
     def mob_attack(self):
-        mob_attack = np.random.choice(self.attacks, 3)
+        mob_attack = np.random.choice(self.attacks, 1)
         return mob_attack
+    
+    def get_mob_health(self):
+        return self.mob_health
 
     def update_mob_health(self, new_health):
+        print(new_health)
         self.mob_health = new_health
 
 class Combat:
@@ -75,20 +80,20 @@ class Combat:
         mob_damage = 0
         player_damage = 0
 
-        for player_attack, mob_attack in zip(mob_attacks, player_attacks):
-            result = self.damage(player_attack, mob_attack)
-            if result == 1:
-                player_damage += 1
-            elif result == -1:
-                mob_damage += 1
-            else:
-                pass
-        return mob_damage, player_damage
+        # for player_attack, mob_attack in zip(mob_attacks, player_attacks):
+        result = self.damage(player_attacks, mob_attacks)
+        if result == 1:
+            player_damage += 1
+        elif result == -1:
+            mob_damage += 1
+        else:
+            pass
+        return player_damage, mob_damage
     
-    def damage_calc(self, player_damage, mob_damage):
-        mobs = Mobs()
-        player = Player()
-
+    def damage_calc(self, player, mobs, player_damage, mob_damage):
         player.player_health -= mob_damage
-        mobs.mob_health -= player_damage    
-        return player.player_health, mobs.mob_health
+        mobs.mob_health -= player_damage
+
+        player.update_player_health(player.player_health)
+        mobs.update_mob_health(mobs.mob_health)
+        # return player.player_health, mobs.mob_health
