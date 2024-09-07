@@ -1,5 +1,8 @@
 from game import *
 
-starting_deck = Deck_Creation()
-opt = Options(starting_deck, 15)
+game_init = Game_Start()
+opt = Options()
+deck = game_init.deck_init()
+# print(game_init.deck_init(), game_init.gold_init())
 
+opt.prompt()
