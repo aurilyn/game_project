@@ -1,28 +1,5 @@
-import random
 import numpy as np
-
-# class Options:
-#     def __init__(self):
-#         self.player_health = 15
-
-#     def prompt(self):
-#         chamber = []
-#         limit = 3
-#         print(f"You have a limit of {limit} attacks you can make. Please select the order in which you want to send your attacks.")
-#         for i in range(limit):
-#             a = input(f"Please select attack {i+1}: ")
-#             chamber.append(a)
-#         # print(chamber)
-#         return chamber
-    
-#     def get_player_health(self):
-#         return self.player_health
-    
-#     def update_player_health(self, new_health):
-#         self.player_health = new_health
-
-#     def view_deck(self, deck):
-#         print(deck)
+import json
 
 class Game_Start:
     def __init__(self):
@@ -30,14 +7,17 @@ class Game_Start:
         self.mob = Mobs()
 
 class Player:
-    def __init__(self) -> None:
-        self.player_health = 3
+    def __init__(self, player_health=3, player_gold=10):
+        self.player_health = player_health
         self.player_armour = 0
-        self.player_gold = 10
+        self.player_gold = player_gold
         self.player_deck = ["Rock", "Paper", "Scissors"]
     
     def get_player_health(self):
         return self.player_health
+    
+    def get_player_gold(self):
+        return self.player_gold
     
     def update_player_health(self, new_health):
         print(new_health)
