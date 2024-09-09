@@ -1,5 +1,4 @@
 import numpy as np
-import json
 
 class Game_Start:
     def __init__(self):
