@@ -1,4 +1,5 @@
 import numpy as np
+import random
 
 class Game_Start:
     def __init__(self):
@@ -6,10 +7,11 @@ class Game_Start:
         self.mob = Mobs()
 
 class Player:
-    def __init__(self, player_health=3, player_gold=10):
+    def __init__(self, player_health=15, player_gold=15, player_inventory=None):
         self.player_health = player_health
         self.player_armour = 0
         self.player_gold = player_gold
+        self.player_inventory = player_inventory if player_inventory else []
         self.player_deck = ["Rock", "Paper", "Scissors"]
     
     def get_player_health(self):
@@ -19,9 +21,15 @@ class Player:
         return self.player_gold
     
     def update_player_health(self, new_health):
-        print(new_health)
+        # print(new_health)
         self.player_health = new_health
         
+    def get_player_inventory(self):
+        return self.player_inventory
+    
+    def update_player_inventory(self, new_item):
+        self.player_inventory.append(new_item)
+    
 class Mobs:
     def __init__(self) -> None:
         self.mob_health = 3
@@ -76,3 +84,47 @@ class Combat:
         player.update_player_health(player.player_health)
         mobs.update_mob_health(mobs.mob_health)
         # return player.player_health, mobs.mob_health
+
+class Store:
+    def __init__(self, player):
+        self.player = player
+        self.store = {
+            "item_1": "C",
+            "item_2": "C",
+            "item_3": "C",
+            "item_4": "UC",
+            "item_5": "UC",
+            "item_5": "R"
+        }
+        self.price = {
+            "C": 5,
+            "UC": 10,
+            "R": 15
+        }
+        
+    def display_store(self):
+        store = random.sample(list(self.store), 3)
+        for item in store:
+            rarity = self.store[item]
+            price = self.price[rarity]
+            output = f"{item}: {price}g"
+            print(output)
+
+        while True:
+            selected_item = input("Type in the item you would like to buy: ")
+            if selected_item not in store:
+                print("Item not in store")
+            else:
+                return selected_item
+    
+    def buy_item(self, item):
+        rarity = self.store[item]
+        price = self.price[rarity]
+        if self.player.player_gold >= price:
+            self.player.player_gold -= price
+            inventory = self.player.get_player_inventory()
+            inventory.append(item)
+            print(self.player.player_inventory)
+            print(self.player.player_gold)
+        else:
+            print("Insufficient Funds")
