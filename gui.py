@@ -46,7 +46,7 @@ while is_running:
         manager.draw_ui(window_surface)
     elif current_view == 'game':
         window_surface.blit(GameScreen.second_screen(), (0, 0))
-        game_screen.update() 
+        game_screen.update() #update game state
         game_screen.draw(window_surface)
         manager.update(time_delta)
         manager.draw_ui(window_surface)
