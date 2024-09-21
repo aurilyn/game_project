@@ -8,13 +8,13 @@ from gui.screens import *
 from gui.button import *
 
 pygame.init()
-pygame.display.set_caption('Quick Start')
-pygame_icon = pygame.image.load('game_project/player.png')
+pygame.display.set_caption('Rock Paper Scissors')
+pygame_icon = pygame.image.load('player.png')
 pygame.display.set_icon(pygame_icon)
 
 window_surface = pygame.display.set_mode((800, 600))
 
-manager = pygame_gui.UIManager((800,600), theme_path="game_project/gui/theme.json")
+manager = pygame_gui.UIManager((800,600), theme_path="gui/theme.json")
 
 start_button = StartButton.hello_button(manager)
 
