@@ -29,6 +29,7 @@ class Player:
     
     def update_player_inventory(self, new_item):
         self.player_inventory.append(new_item)
+        
     
 class Mobs:
     def __init__(self) -> None:
@@ -44,7 +45,7 @@ class Mobs:
         return self.mob_health
 
     def update_mob_health(self, new_health):
-        print(new_health)
+        # print(new_health)
         self.mob_health = new_health
 
 class Combat:
