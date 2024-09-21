@@ -29,6 +29,9 @@ class Player:
     
     def update_player_inventory(self, new_item):
         self.player_inventory.append(new_item)
+
+    def select_attack(self, attack):
+        print(attack)
     
 class Mobs:
     def __init__(self) -> None:

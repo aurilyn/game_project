@@ -9,10 +9,12 @@ from gui.button import *
 
 pygame.init()
 pygame.display.set_caption('Quick Start')
+pygame_icon = pygame.image.load('game_project/player.png')
+pygame.display.set_icon(pygame_icon)
 
 window_surface = pygame.display.set_mode((800, 600))
 
-manager = pygame_gui.UIManager((800, 600), theme_path="game_project/gui/theme.json")
+manager = pygame_gui.UIManager((800,600), theme_path="game_project/gui/theme.json")
 
 start_button = StartButton.hello_button(manager)
 
@@ -20,6 +22,7 @@ clock = pygame.time.Clock()
 is_running = True
 
 current_view = 'main'
+game_screen = None
 
 while is_running:     
     time_delta = clock.tick(60)/1000.0
@@ -28,15 +31,23 @@ while is_running:
             is_running = False
         if event.type == pygame_gui.UI_BUTTON_PRESSED:
             if event.ui_element == start_button:
-                current_view = 'second'
+                current_view = 'game'
+                start_button.kill()
+                game_screen = GameScreen(manager)
 
         manager.process_events(event)
+
+        if current_view == 'game':
+            game_screen.handle_events(event)
 
     if current_view == 'main':
         window_surface.blit(StartingScreen.main_screen(), (0, 0))
         manager.update(time_delta)
         manager.draw_ui(window_surface)
-    elif current_view == 'second':
+    elif current_view == 'game':
         window_surface.blit(GameScreen.second_screen(), (0, 0))
-
+        game_screen.update() 
+        game_screen.draw(window_surface)
+        manager.update(time_delta)
+        manager.draw_ui(window_surface)
     pygame.display.update()
