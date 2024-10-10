@@ -1,5 +1,5 @@
 import numpy as np
-import json
+import random
 
 class Game_Start:
     def __init__(self):
@@ -7,10 +7,11 @@ class Game_Start:
         self.mob = Mobs()
 
 class Player:
-    def __init__(self, player_health=3, player_gold=10):
+    def __init__(self, player_health=15, player_gold=15, player_inventory=None):
         self.player_health = player_health
         self.player_armour = 0
         self.player_gold = player_gold
+        self.player_inventory = player_inventory if player_inventory else []
         self.player_deck = ["Rock", "Paper", "Scissors"]
     
     def get_player_health(self):
@@ -20,9 +21,16 @@ class Player:
         return self.player_gold
     
     def update_player_health(self, new_health):
-        print(new_health)
+        # print(new_health)
         self.player_health = new_health
         
+    def get_player_inventory(self):
+        return self.player_inventory
+    
+    def update_player_inventory(self, new_item):
+        self.player_inventory.append(new_item)
+        
+    
 class Mobs:
     def __init__(self) -> None:
         self.mob_health = 3
@@ -37,7 +45,7 @@ class Mobs:
         return self.mob_health
 
     def update_mob_health(self, new_health):
-        print(new_health)
+        # print(new_health)
         self.mob_health = new_health
 
 class Combat:
@@ -91,6 +99,6 @@ class Store:
     def display_items(self, items):
         for item in items:
             print(f"{item}, Price: 6 Gold")
-    def purchase(self):
+    # def purchase(self):
         
 
