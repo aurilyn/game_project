@@ -77,3 +77,20 @@ class Combat:
         player.update_player_health(player.player_health)
         mobs.update_mob_health(mobs.mob_health)
         # return player.player_health, mobs.mob_health
+
+class Store:
+    def __init__(self, items):
+        #items is a dictionary of items with the item name as key and cost is the value
+        self.items = items
+        self.store_item_limit = 6
+    def items(self):
+        #load in the items that can be purchased
+        store_items = []
+        items = store_items.append(np.random.choice(self.items, self.store_item_limit))
+        return items
+    def display_items(self, items):
+        for item in items:
+            print(f"{item}, Price: 6 Gold")
+    def purchase(self):
+        
+

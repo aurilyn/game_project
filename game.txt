@@ -1,0 +1,13 @@
+completed so far:
+turn based rps combat
+saving the game into a json file (add more stuff to save as the game goes on)
+
+what to do next:
+after defeating one mob, fight the next one
+add in a store to buy something
+store will let player use gold to buy new items
+can also use gold to buy new cards
+remove cards
+using an attack removes it from the deck for that fight only
+refreshes the deck at the beginning of the next fight
+create some items / new attacks
