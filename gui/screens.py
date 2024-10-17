@@ -57,6 +57,13 @@ class GameScreen:
             print(f"Unable to load image: {e}")
             self.player_image = None
 
+        try:
+            self.background_image = pygame.image.load('background/hallway.jpg')
+            self.background_image = pygame.transform.scale(self.background_image, (screen_width, screen_height))
+        except pygame.error as e:
+            print(f"Unable to load background image: {e}")
+            self.background_image = None
+
     def second_screen():
         second_background = pygame.Surface((800, 600))
         second_background.fill(pygame.Color('#FF0000'))
@@ -101,7 +108,10 @@ class GameScreen:
             print("Surface is None, cannot draw.")
             return
 
-        surface.fill((0, 0, 0))  # Clear the screen
+        if self.background_image:
+            surface.blit(self.background_image, (0, 0))
+        else:
+            surface.fill((0, 0, 0))
         font = pygame.font.Font(None, 36)
         
         # Draw player health
