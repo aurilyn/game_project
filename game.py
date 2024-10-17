@@ -85,7 +85,7 @@ class Combat:
         player.update_player_health(player.player_health)
         mobs.update_mob_health(mobs.mob_health)
         # return player.player_health, mobs.mob_health
-
+    
 class Store:
     def __init__(self, items):
         #items is a dictionary of items with the item name as key and cost is the value
@@ -102,3 +102,12 @@ class Store:
     # def purchase(self):
         
 
+class Score:
+    def __init__(self):
+        self.score = 0
+
+    def point_calculation(self, player):
+        #score is calculated by how much hp you have after mob dies
+        #grab the player health, then add to self.score
+        self.score += player.get_player_health()
+        return self.score

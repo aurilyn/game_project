@@ -9,7 +9,7 @@ from gui.button import *
 
 pygame.init()
 pygame.display.set_caption('Rock Paper Scissors')
-pygame_icon = pygame.image.load('player.png')
+pygame_icon = pygame.image.load('sprite\player.png')
 pygame.display.set_icon(pygame_icon)
 
 window_surface = pygame.display.set_mode((800, 600))

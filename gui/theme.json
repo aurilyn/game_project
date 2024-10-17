@@ -5,7 +5,13 @@
         {
             "normal_border": "White",
             "normal_bg": "SlateGray",
-            "normal_text": "White"
+            "normal_text": "White",
+            "hovered_border": "LightGray",
+            "hovered_bg": "DarkSlateGray",
+            "hovered_text": "White",
+            "pressed_border": "DarkGray",
+            "pressed_bg": "Black",
+            "pressed_text": "White"
         },
         "misc":
         {
